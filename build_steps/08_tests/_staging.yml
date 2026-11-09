@@ -1,0 +1,39 @@
+# goes to: cricket_dbt/models/staging/_staging.yml
+# Step 8a: built-in dbt tests only. dbt_utils etc. need `dbt deps`, which needs
+# external network access, which a Snowflake trial account doesn't have.
+version: 2
+
+models:
+  - name: stg_balls
+    columns:
+      - name: ball_id
+        data_tests: [unique, not_null]
+      - name: ball_outcome
+        data_tests:
+          - accepted_values:
+              values: ['RUNS', 'WICKET', 'WIDE', 'NOBALL']
+      - name: batter_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_players')
+              field: player_id
+      - name: match_id
+        data_tests:
+          - relationships:
+              to: ref('stg_matches')
+              field: match_id
+
+  - name: stg_players
+    columns:
+      - name: player_id
+        data_tests: [unique, not_null]
+      - name: role_code
+        data_tests:
+          - accepted_values:
+              values: ['BAT', 'WK', 'AR', 'BOWL']
+
+  - name: stg_matches
+    columns:
+      - name: match_id
+        data_tests: [unique, not_null]
