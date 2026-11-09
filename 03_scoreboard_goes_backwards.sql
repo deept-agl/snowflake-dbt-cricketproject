@@ -1,3 +1,5 @@
+--Bonus: Additional Scenarios for you to experiment.
+
 -- =====================================================================
 -- 03_scoreboard_goes_backwards.sql
 -- `dbt run` then `dbt test`   vs   `dbt build`

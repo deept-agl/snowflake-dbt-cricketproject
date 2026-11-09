@@ -1,0 +1,21 @@
+# goes to: cricket_dbt/dbt_project.yml
+# Step 1: an empty project. A name, where things live, and how each folder gets built.
+name: cricket_dbt
+version: '1.0.0'
+profile: cricket_dbt
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+models:
+  cricket_dbt:
+    staging:
+      +materialized: view      # always reflects RAW
+    marts:
+      +materialized: table     # what the website reads
+
+seeds:
+  cricket_dbt:
+    +column_types:
+      role_code: varchar

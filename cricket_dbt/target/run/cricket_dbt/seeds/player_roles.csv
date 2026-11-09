@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table "LEAGUE_DB"."DEV"."PLAYER_ROLES";
+    -- dbt seed --
+    
+            insert into LEAGUE_DB.DEV.player_roles (role_code, role_name) values
+            (%s,%s),(%s,%s),(%s,%s),(%s,%s)
+        
+
+;
+  

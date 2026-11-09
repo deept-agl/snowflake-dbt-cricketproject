@@ -1,0 +1,13 @@
+# goes to: cricket_dbt/models/staging/_sources.yml
+# Step 2: tell dbt where the raw data lives. Now a model can say source('raw', 'balls').
+version: 2
+
+sources:
+  - name: raw
+    database: LEAGUE_DB
+    schema: RAW
+    tables:
+      - name: teams
+      - name: players
+      - name: matches
+      - name: balls

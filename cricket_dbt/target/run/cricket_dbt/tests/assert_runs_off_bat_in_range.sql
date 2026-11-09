@@ -1,0 +1,13 @@
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      -- goes to: cricket_dbt/tests/assert_runs_off_bat_in_range.sql
+-- Step 8b: a singular test is just a query. Any row returned = failure.
+-- Off the bat, a batter scores 0 to 6 on one ball. Never negative.
+select ball_id, runs_off_bat
+from LEAGUE_DB.DEV.stg_balls
+where runs_off_bat < 0 or runs_off_bat > 6
+      
+    ) dbt_internal_test

@@ -1,0 +1,20 @@
+# goes to: cricket_dbt/models/marts/_marts.yml
+version: 2
+
+models:
+  - name: fct_balls
+    description: One row per ball bowled. Incremental on ball_ts.
+    columns:
+      - name: ball_id
+        data_tests: [unique, not_null]
+
+  - name: dim_players
+    columns:
+      - name: player_id
+        data_tests: [unique, not_null]
+
+  - name: batting_leaderboard
+    description: One row per batter for the season. The league website reads this.
+    columns:
+      - name: player_id
+        data_tests: [unique, not_null]
